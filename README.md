@@ -9,6 +9,17 @@ Each respective language gets a unique pipeline for all occasions.
 
 Some projects within the same language have unique requirements, ex the Java [bot-core](https://github.com/BananazTechnology/bot-core) is a local release to GitHub Packages so it does not have any Docker Image building while everything in `java-app` folder does.
 
+## Repo Secrets
+| Secret Name | Secret Description |
+|---|---|
+| DOCKERHUB_USERNAME | Username for the public Docker Hub account to push images to when available |
+| DOCKERHUB_TOKEN | Secret API token for accessing the Docker Hub account |
+| SONAR_HOST_URL | The URL of the available prod SonarQube server |
+| SONAR_TOKEN | An API token for accessing SonarQube |
+| GH_USERNAME | The Bananaz service account for accessing all private repos and features |
+| GH_TOKEN | The GitHub access token for accessing the service account |
+
 ## Docs
+* [Getting started with org workflows](https://docs.github.com/en/actions/using-workflows/creating-starter-workflows-for-your-organization)
 * [Sharing workflows in organizations](https://docs.github.com/en/actions/using-workflows/sharing-workflows-secrets-and-runners-with-your-organization)
 * [Reusable workflows](https://docs.github.com/en/actions/using-workflows/reusing-workflows)
