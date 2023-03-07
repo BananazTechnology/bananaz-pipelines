@@ -89,6 +89,8 @@ jobs:
           images: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
             ghcr.io/${{ github.repository }}
+      #
+      # Docker build image and push
       - name: Build Dockerfile and Push
         id: docker_build
         uses: docker/build-push-action@v4
