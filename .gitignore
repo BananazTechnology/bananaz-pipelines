@@ -1,0 +1,4 @@
+# Ignore the secret file of credentials for scripts
+**/request-secrets
+**/pipeline-secrets
+**/tmp
