@@ -5,8 +5,8 @@ TMP_FOLDER=tmp
 mkdir -p ${TMP_FOLDER}
 REPO_TMP_FILE=${TMP_FOLDER}/repos.txt
 ENC_LIB=EncryptData.py
-REQUEST_HEADERS_FILE=request-secrets
-PIPELINE_SECRETS_FILE=pipeline-secrets
+REQUEST_HEADERS_FILE=request_secrets
+PIPELINE_SECRETS_FILE=pipeline_secrets
 WAS_ERROR=false
 LAST_ERROR_LOG=""
 ERROR_COUNT=0

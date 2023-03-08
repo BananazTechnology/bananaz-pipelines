@@ -5,8 +5,8 @@ This project can loop 75 of the newest updates/created repos and can create/upda
 
 ### Env Setup
 * Contact `contact@bananaz.tech` for access to:
-  * `request-secrets` file
-  * `pipeline-secrets` file
+  * `request_secrets` file
+  * `pipeline_secrets` file
 * Ensure you have python3 installed
 * Install the NaCL library: `pip3 install pynacl`
 
