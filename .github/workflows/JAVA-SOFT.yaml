@@ -26,15 +26,9 @@ jobs:
         with:
           distribution: temurin
           java-version: ${{ matrix.java }}
-      # Print env
-      - name: Print env
-        run: env
-      # Print settings xml
-      - name: Print settings.xml
-        run: cat ~/.m2/settings.xml
       # Creates a settings.xml file for Maven
       - name: Builds Maven Settings
-        uses: whelk-io/maven-settings-xml-action@v20
+        uses: whelk-io/maven-settings-xml-action@v21
         with:
           servers: |
             [{
