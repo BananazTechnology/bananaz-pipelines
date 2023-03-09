@@ -20,6 +20,9 @@ Some projects within the same language have unique requirements, ex the Java [bo
 | GH_USERNAME | The Bananaz service account for accessing all private repos and features |
 | GH_TOKEN | The GitHub access token for accessing the service account |
 
+## Scripts
+The `scripts` folder contains scripts that are used in special pipelines, it also might container other helpful DevOps tools.
+
 ## Docs
 * [Getting started with org workflows](https://docs.github.com/en/actions/using-workflows/creating-starter-workflows-for-your-organization)
 * [Sharing workflows in organizations](https://docs.github.com/en/actions/using-workflows/sharing-workflows-secrets-and-runners-with-your-organization)

@@ -1,16 +1,16 @@
-# This is a basic workflow to help you get started with Actions
-
 name: RELEASE
-
+# Set the UI name
+run-name: Java release Maven package to Github Packages
 # Controls when the workflow will run
-on: [workflow_call]
+on: [workflow_dispatch]
     
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow builds the Java app!
-  # This workflow submites the release
   release:
-    if: startsWith(github.event.head_commit.message, '[release]') == true
+    if: contains(github.event.head_commit.message, '[release]') == true
+    # Set github UI name
+    name: Java Maven builder
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     # Can build any Java version
