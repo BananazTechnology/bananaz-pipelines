@@ -1,0 +1,21 @@
+name: NODE
+# Set the UI name
+run-name: Node pipeline
+# Controls when the workflow will run
+on: [workflow_call]
+    
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  node-testing:
+    name: Node testing
+    if: |
+      contains(github.event.head_commit.message, '[release]') != true
+    uses: BananazTechnology/bananaz-pipelines/.github/workflows/NODE-SOFT.yaml@main
+    secrets: inherit
+  node-package:
+    name: Node build Docker
+    if: |
+      contains(github.event.head_commit.message, '[release]') == true &&
+      github.ref_name == 'main'
+    uses: BananazTechnology/bananaz-pipelines/.github/workflows/NODE-RELEASE.yaml@main
+    secrets: inherit
