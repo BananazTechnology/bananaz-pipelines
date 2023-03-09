@@ -53,6 +53,10 @@ while read REPO; do
             WAS_ERROR=true
             ERROR_COUNT=$((ERROR_COUNT+1))
         fi
+        # Log finish msg
+        if [ "${DEBUG}" = true ]; then
+            echo "Finished updating ${SECRET_NAME} for ${REPO}"
+        fi
     done < ${PIPELINE_SECRETS_FILE}
 done < ${REPO_TMP_FILE}
 # Cleanup
