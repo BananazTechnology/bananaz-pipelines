@@ -28,8 +28,16 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: 'npm'
       # Install dependencies
-      - name: Install dependencies
+      - name: Install Dependencies
         run: npm install
-      # Build
+      # Test app builds
       - name: Build
         run: npm run build
+      # Run Node app through SonarQube
+      - name: SonarQube Scan
+        uses: kitabisa/sonarqube-action@v1.2.0
+        with:
+          host: ${{ secrets.SONAR_HOST_URL }}
+          login: ${{ secrets.SONAR_TOKEN }}
+          projectKey: ${{ github.event.repository.name }}
+          projectName: ${{ github.event.repository.name }}
