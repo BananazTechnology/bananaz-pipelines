@@ -12,15 +12,18 @@ jobs:
       contains(github.event.head_commit.message, '[release]') != true &&
       contains(github.event.head_commit.message, '[package]') != true
     uses: BananazTechnology/bananaz-pipelines/.github/workflows/JAVA-SOFT.yaml@main
+    secrets: inherit
   java-package:
     name: Java publish Maven
     if: |
       contains(github.event.head_commit.message, '[package]') == true &&
       github.ref_name == 'main'
     uses: BananazTechnology/bananaz-pipelines/.github/workflows/JAVA-RELEASE-PACKAGE.yaml@main
+    secrets: inherit
   java-release:
     name: Java build Docker
     if: |
       contains(github.event.head_commit.message, '[release]') == true &&
       github.ref_name == 'main'
     uses: BananazTechnology/bananaz-pipelines/.github/workflows/JAVA-RELEASE-APP.yaml@main
+    secrets: inherit
