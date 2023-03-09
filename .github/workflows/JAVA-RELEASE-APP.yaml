@@ -2,7 +2,7 @@ name: RELEASE
 # Set the UI name
 run-name: Java build and publish Docker image
 # Controls when the workflow will run
-on: [workflow_dispatch]
+on: [workflow_call]
     
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
