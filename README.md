@@ -3,12 +3,21 @@
 
 ## Description
 * Head inside `.github/workflows` folder first
-* The `SOFT` file is for running tests / ensuring the project can compile.
-* The `RELEASE` is for building the project and bundling in a Docker Image for distribution.
 
-Each respective language gets a unique pipeline for all occasions.
+This project currently supports two types of code bases:
+  * NodeJS
+  * Java
 
-Some projects within the same language have unique requirements, ex the Java [bot-core](https://github.com/BananazTechnology/bot-core) is a local release to GitHub Packages so it does not have any Docker Image building while everything in `.github/workflows/JAVA-RELEASE-APP` pipeline does.
+Each project language requires a unique pipeline file in its own repos `.github/workflows` folder, you can use examples available under [pipeline-examples](./pipeline-examples/) as reference.
+
+During a commit the message must contain these unique keywords to operate certain features:
+| Language | Keyword | Description |
+|---|---|---|
+| NodeJS | N/A | Runs a build to ensure your app does not fail loading |
+| NodeJS | `[release]` | Compiles app and builds Docker images |
+| Java | N/A | Runs a `mvn verify` to ensure app builds |
+| Java | `[package]` | Compiles app and uploads to GitHub Maven repo |
+| Java | `[release]` | Compiles app and builds Docker images |
 
 ## Repo Secrets
 | Secret Name | Secret Description |
