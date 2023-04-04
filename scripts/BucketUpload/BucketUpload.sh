@@ -35,5 +35,6 @@ for FILE in "$FOLDER_OF_ITEMS_TO_UPLOAD"/*; do
         --namespace $ORACLE_BUCKET_NAMESPACE \
         --bucket-name $ORACLE_BUCKET_NAME \
         --file "$FILE" \
-        --no-multipart
+        --no-multipart \
+        --force
 done
