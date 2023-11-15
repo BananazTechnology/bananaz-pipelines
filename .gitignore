@@ -2,3 +2,4 @@
 **/request_secrets
 **/pipeline_secrets
 **/tmp
+*.bak
