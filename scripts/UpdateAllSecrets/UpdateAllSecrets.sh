@@ -37,26 +37,28 @@ while read REPO; do
     SECRET_ENC_KEY=$(echo ${SECRET_ENC_KEY_JSON} | jq -r '.key')
     # Read the pipeline secrets file
     while read SECRET; do
-        # Get the secret name
-        SECRET_NAME=$(echo ${SECRET} | cut -d'=' -f1)
-        # Get the secret value
-        SECRET_VALUE=$(echo ${SECRET} | cut -d'=' -f2)
-        # Encrypt the secret value
-        ENCRYPTED_SECRET=$(python3 ${ENC_LIB} -d "${SECRET_VALUE}" -k "${SECRET_ENC_KEY}")
-        # Update the secret
-        SECRET_UPDATE_URL="https://api.github.com/repos/${GH_ORG}/${REPO}/actions/secrets/${SECRET_NAME}"
-        SECRET_UPDATE_BODY="{\"key_id\":\"${SECRET_KEY_ID}\",\"encrypted_value\":\"${ENCRYPTED_SECRET}\"}"
-        LAST_ERROR_LOG="${TMP_FOLDER}/${GH_ORG}.${REPO}.${SECRET_NAME}.error.log"
-        SECRET_RESPONSE_CODE=$(curl -o "${LAST_ERROR_LOG}" -w "%{http_code}" -s -X PUT -H @${REQUEST_HEADERS_FILE} -d ${SECRET_UPDATE_BODY} ${SECRET_UPDATE_URL})
-        # if string response code is not 204 or 201 then error occured
-        if [ "${SECRET_RESPONSE_CODE}" != "204" ] && [ "${SECRET_RESPONSE_CODE}" != "201" ]; then
-            WAS_ERROR=true
-            ERROR_COUNT=$((ERROR_COUNT+1))
-        fi
-        # Log finish msg
-        if [ "${DEBUG}" = true ]; then
-            echo "Finished updating ${SECRET_NAME} for ${REPO}"
-        fi
+        [ -n "${SECRET}" ] && {
+            # Get the secret name
+            SECRET_NAME=$(echo ${SECRET} | cut -d'=' -f1)
+            # Get the secret value
+            SECRET_VALUE=$(echo ${SECRET} | cut -d'=' -f2)
+            # Encrypt the secret value
+            ENCRYPTED_SECRET=$(python3 ${ENC_LIB} -d "${SECRET_VALUE}" -k "${SECRET_ENC_KEY}")
+            # Update the secret
+            SECRET_UPDATE_URL="https://api.github.com/repos/${GH_ORG}/${REPO}/actions/secrets/${SECRET_NAME}"
+            SECRET_UPDATE_BODY="{\"key_id\":\"${SECRET_KEY_ID}\",\"encrypted_value\":\"${ENCRYPTED_SECRET}\"}"
+            LAST_ERROR_LOG="${TMP_FOLDER}/${GH_ORG}.${REPO}.${SECRET_NAME}.error.log"
+            SECRET_RESPONSE_CODE=$(curl -o "${LAST_ERROR_LOG}" -w "%{http_code}" -s -X PUT -H @${REQUEST_HEADERS_FILE} -d ${SECRET_UPDATE_BODY} ${SECRET_UPDATE_URL})
+            # if string response code is not 204 or 201 then error occured
+            if [ "${SECRET_RESPONSE_CODE}" != "204" ] && [ "${SECRET_RESPONSE_CODE}" != "201" ]; then
+                WAS_ERROR=true
+                ERROR_COUNT=$((ERROR_COUNT+1))
+            fi
+            # Log finish msg
+            if [ "${DEBUG}" = true ]; then
+                echo "Finished updating ${SECRET_NAME} for ${REPO}"
+            fi
+        }
     done < ${PIPELINE_SECRETS_FILE}
 done < ${REPO_TMP_FILE}
 # Cleanup
