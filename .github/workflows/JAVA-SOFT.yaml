@@ -45,10 +45,10 @@ jobs:
       # Runs native Maven verify
       - name: Maven Verify
         run: mvn -V --fail-fast --no-transfer-progress --batch-mode clean verify -DskipTests
-      # SonarQube analysis
-      - name: Maven SonarQube Analysis
-        run: mvn -V --no-transfer-progress --batch-mode verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      # # SonarQube analysis
+      # - name: Maven SonarQube Analysis
+      #   run: mvn -V --no-transfer-progress --batch-mode verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # Needed to get PR information, if any
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #     SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}

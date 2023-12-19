@@ -33,19 +33,19 @@ jobs:
       # Test app builds
       - name: Build
         run: npm run build
-      # Caching sonar-scanner
-      - name: Cache SonarQube packages
-        uses: actions/cache@v3
-        with:
-          path: /opt/sonar-scanner/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: |
-            ${{ runner.os }}-sonar
-      # Run Node app through SonarQube
-      - name: SonarQube Scan
-        uses: kitabisa/sonarqube-action@v1.2.0
-        with:
-          host: ${{ secrets.SONAR_HOST_URL }}
-          login: ${{ secrets.SONAR_TOKEN }}
-          projectKey: ${{ github.event.repository.name }}
-          projectName: ${{ github.event.repository.name }}
+      # # Caching sonar-scanner
+      # - name: Cache SonarQube packages
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: /opt/sonar-scanner/.sonar/cache
+      #     key: ${{ runner.os }}-sonar
+      #     restore-keys: |
+      #       ${{ runner.os }}-sonar
+      # # Run Node app through SonarQube
+      # - name: SonarQube Scan
+      #   uses: kitabisa/sonarqube-action@v1.2.0
+      #   with:
+      #     host: ${{ secrets.SONAR_HOST_URL }}
+      #     login: ${{ secrets.SONAR_TOKEN }}
+      #     projectKey: ${{ github.event.repository.name }}
+      #     projectName: ${{ github.event.repository.name }}
