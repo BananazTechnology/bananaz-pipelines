@@ -11,7 +11,7 @@ WAS_ERROR=false
 LAST_ERROR_LOG=""
 ERROR_COUNT=0
 DEBUG=${DEBUG:-false}
-ls -lart
+
 # Get initial list of repos
 REPO_URL="https://api.github.com/orgs/${GH_ORG}/repos?per_page=75&sort=updated&direction=desc"
 REPOS_JSON=$(curl -s -X GET -H @${REQUEST_HEADERS_FILE} ${REPO_URL})
